@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  phpmyadmin:
+    env_file:
+        - .env
+    image: phpmyadmin
+    container_name: pma_container
+    restart: always
+    environment:
+      # PMA_HOST: ${HOST}
+      PMA_ARBITRARY: 1
+      #PMA_USER: ${USER}
+      #PMA_PASSWORD: ${PASSWORD}
+      #MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+    ports:
+      - 8081:80
+    volumes:
+      - /sessions
+
+networks:
+  default:
+    external:
+      name: ${NETWORK:-default}
